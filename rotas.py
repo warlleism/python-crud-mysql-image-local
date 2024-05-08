@@ -1,11 +1,10 @@
-import os
 import base64
 from flask import Flask, jsonify, request
 from config import conexao, cursor
 
 app = Flask(__name__)
 
-# Rota para lidar com o POST
+# Rota para buscar livros
 
 
 @app.route('/buscar_livros', methods=['GET'])
@@ -34,6 +33,8 @@ def buscar_livros():
 
     return jsonify({'livros': livros_json})
 
+# Rota para criação de livro
+
 
 @app.route('/adicionar_livro', methods=['POST'])
 def adicionar_livro():
@@ -54,6 +55,8 @@ def adicionar_livro():
 
     return jsonify({'message': 'Livro adicionado com sucesso'})
 
+# Rota para edição de livro
+
 
 @app.route('/editar_livro', methods=['PUT'])
 def editar_livro():
@@ -66,6 +69,8 @@ def editar_livro():
     conexao.commit()
 
     return jsonify({'message': 'Livro editado com sucesso'})
+
+# Rota para deletar livro
 
 
 @app.route('/deletar_livro', methods=['DELETE'])
